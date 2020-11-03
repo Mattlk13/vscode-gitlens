@@ -771,7 +771,7 @@ export namespace Git {
 		if (limit && !reverse) {
 			params.push(`-n${limit}`);
 		}
-		params.push(renames ? '--follow' : '-m');
+		params.push(startLine == null && renames ? '--follow' : '-m');
 
 		if (filters != null && filters.length !== 0) {
 			params.push(`--diff-filter=${filters.join(emptyStr)}`);
@@ -801,8 +801,8 @@ export namespace Git {
 			}
 		}
 
-		if (startLine == null || renames) {
-			// Don't specify a file spec when using a line number (so say the git docs), unless it is a follow
+		if (startLine == null) {
+			// Don't specify a file spec when using a line number (so say the git docs)
 			params.push('--', file);
 		}
 
@@ -1018,7 +1018,8 @@ export namespace Git {
 
 	export async function rev_parse__show_toplevel(cwd: string): Promise<string | undefined> {
 		const data = await git<string>({ cwd: cwd, errors: GitErrorHandling.Ignore }, 'rev-parse', '--show-toplevel');
-		return data.length === 0 ? undefined : data.trim();
+		// Make sure to normalize: https://github.com/git-for-windows/git/issues/2478
+		return data.length === 0 ? undefined : Strings.normalizePath(data.trim());
 	}
 
 	export function shortlog(repoPath: string) {

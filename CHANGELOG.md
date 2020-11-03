@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [10.2.3] - 2020-11-03
+
+### Fixed
+
+- Fixes [#1139](https://github.com/eamodio/vscode-gitlens/issues/1139) - Git crash with v2.29.x
+
+## [10.2.2] - 2020-06-10
+
+### Added
+
+- Adds unique icons for each GitLens view to better support view moving in VS Code 1.46
+
+### Fixed
+
+- Fixes an issue with some settings showing up with errors on the VS Code settings UI
+
+## [10.2.1] - 2020-02-10
+
+### Fixed
+
+- Fixes [#932](https://github.com/eamodio/vscode-gitlens/issues/932) - Absolute path used in compare on git version 2.25.0.windows.1
+- Fixes an issue with showing changes of staged files in _File History_ view, _Open Changes with Previous Revision_ command, etc.
+- Fixes certain error handling because of change in a VS Code error message
+- Fixes file history issues w/ copied/deleted files
+
 ## [10.2.0] - 2019-11-18
 
 ### Added
